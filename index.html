@@ -4,39 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&disply=swap" />
     <title>Vue.js Tutorial & Examples</title>
 </head>
 <body>
 
     <div id="elzero" class='container'>
-         <div class="product">
-            <h1>product title</h1>
-            <p>product descripion</p>
-            <span class="price">price: ${{price}}</span>
-            <span class="amount-title">Amount:</span>
-            <input type="range" name="" id="" min="1" max="20" step="1" v-model="amount">
-            <div class="total-price">
-                <span class="amount">Amount{{amount}}</span>
-                <span class="total">Total ${{totalprice}}</span>
-            </div>
+         <h1>Wellcome to vue js Model </h1>
+         <form action="">
+             <input type="text" placeholder="Type Your post title" v-model="input">
+             <button @click.prevent="ConvertToSlug">Convert to slug</button>
+         </form>
+         <div class="slug-result">
+             https://elzero.org/<span>{{ output }}</span>
          </div>
     </div>
+
+
     <script src="js/vue.js"></script>
     <script>
         var vm = new Vue({
                el:'#elzero',
                data: {
-                   amount: 1,
-                   price: 50
+                   input: '',
+                   output: ''
                },
-               computed:{
-                   totalprice: function(){
-                       return this.amount * this.price
+               methods: {
+                ConvertToSlug() {
+                     // cash the variable 
+                     var theSlug = this.input;
+
+                     // 1-convert to lowercase
+                     theSlug = theSlug.toLowerCase();
+
+                     // 2- Replace White Spaces With Dashes
+                     theSlug = theSlug.replace(/\s+/g, '-');
+                     // 3- Replace Ampersand  with Dash and space
+                     theSlug = theSlug.replace(/&/g , '-and-');
+
+                     // Add the result to output
+                     this.output = theSlug;
                    }
                }
-            });
+        });
     </script>
 </body>
 </html>
