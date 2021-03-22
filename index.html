@@ -10,33 +10,43 @@
 </head>
 <body>
 
-    <div id="elzero" class='container' :style="{'--maincolor':color }">
-         <ul class="switch-colors">
-             <li data-color="#b71540" @click="updateColor"></li>
-             <li data-color="#0c2461" @click="updateColor"></li>
-             <li data-color="#3c6382" @click="updateColor"></li>
-             <li data-color="#079992" @click="updateColor"></li>
-             <li data-color="#e58e26" @click="updateColor"></li>
-         </ul>
-         <div class="changes">
-             <div>change</div>
-         </div>
-    </div>
+    <div id="elzero" class='container'>
+        <input type="text" v-model="username">
+        <button @click="getRepos">Get Repos</button>
+        <div v-for='repo in repos'>
+            <h4>{{ repo.name }}</h4>
+            <p>{{repo.description}}</p>
+        </div>
+    </div>    
+     
 
 
     <script src="js/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
         var vm = new Vue({
                el:'#elzero',
                data: {
-                  color: "#b71540"
+                  username:null,
+                  repos: null
                },
                methods: {
-                updateColor : function (event) {
-                    this.color = event.target.getAttribute('data-color');
-                }
-
+                   getRepos: function () {
+                    /*
+                       [1]get data from APi 
+                       [2]return the Response 
+                       [3]catch Erro
+                    */
+                   return axios.get(
+                       'http://api.github.com/users/' +this.username + '/repos'
+                       ).then(response => {
+                           this.repos = response.data
+                       }).catch( error => {
+                           console.log(error)
+                       });
+                   }
                }
+               
         });
     </script>
 </body>
