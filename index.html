@@ -10,16 +10,29 @@
 </head>
 <body>
 
-    <div id="elzero" class='container'>
-        <input type="text" v-model="username">
-        <button @click="getRepos">Get Repos</button>
-        <div v-for='repo in repos'>
-            <h4>{{ repo.name }}</h4>
-            <p>{{repo.description}}</p>
-        </div>
-    </div>    
-     
-
+    <div class="container" id="elzero">
+        <form action="send.html" method="post" @submit="validateForm">
+          <div class="errors-list">
+            <div class="error" v-for="error in formErrors">{{ error }}</div>
+          </div>
+          <div class="form-group">
+            <label for="">Username</label>
+            <input class="form-input" type="text" name="username" v-model="username"/>
+          </div>
+          <div class="form-group">
+            <label for="">Subject</label>
+            <input class="form-input" type="text" name="subject" v-model="subject"/>
+          </div>
+          <div class="form-group">
+            <label for="">Message</label>
+            <textarea class="form-input" name="message" v-model="message"></textarea>
+          </div>
+          <div class="form-group">
+            <input class="send-button" type="submit" value="Send"/>
+          </div>
+        </form>
+      </div>
+      <!-- Code End -->   
 
     <script src="js/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
@@ -27,26 +40,43 @@
         var vm = new Vue({
                el:'#elzero',
                data: {
-                  username:null,
-                  repos: null
-               },
+                  formErrors: [],
+                  username: null,
+                  subject: null,
+                  message: null,
+                  maxChars: 10
+               }, 
                methods: {
-                   getRepos: function () {
-                    /*
-                       [1]get data from APi 
-                       [2]return the Response 
-                       [3]catch Erro
-                    */
-                   return axios.get(
-                       'http://api.github.com/users/' +this.username + '/repos'
-                       ).then(response => {
-                           this.repos = response.data
-                       }).catch( error => {
-                           console.log(error)
-                       });
+                   validateForm: function (e){
+                    
+                    this.formErrors =[]; // Empty Errors To start Fresh
+
+                     // [1] check if username is empty
+                     if (!this.username) {
+                         this.formErrors.push('username cant be empty');
+                     }
+
+                     // [2] check if subject is empty
+                     if (!this.subject) {
+                         this.formErrors.push('subject cant be empty');
+                     }
+                      // [3] check if message is empty
+                      if (!this.message) {
+                         this.formErrors.push('Message cant be empty');
+                     }
+
+                     //[4] check username characters count 
+                     if (this.username && this.username.length > this.maxChars){
+                        this.formErrors.push('Username  cant be more than '+ this.maxChars + 'characters');
+                     }
+
+                     // If No Errors return true 
+                     if (!this.formErrors.length) { //this mean the forerrors is Empty
+                           return true;
+                     }
+                    e.preventDefault();
                    }
-               }
-               
+               }  
         });
     </script>
 </body>

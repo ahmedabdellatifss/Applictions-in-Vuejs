@@ -9,41 +9,54 @@ body{
     text-align: center;
     padding: 20px
 }
-.container .switch-colors{
-    list-style: none;
-    padding:0;
-    margin: 20px;
-}
-.container .switch-colors li{
-    width: 20px;
-    height: 20px;
-    background-color: #ddd;
-    display: inline-block;
-    cursor: pointer;
-}
-.container .switch-colors li:first-child{
-    background-color: #b71540;
-}
-
-.container .switch-colors li:nth-child(2){
-    background-color: #0c2461;
-}
-
-.container .switch-colors li:nth-child(3){
-    background-color: #3c6382;
-}
-
-.container .switch-colors li:nth-child(4){
-    background-color: #079992;
-}
-
-.container .switch-colors li:last-child {
-    background-color: #e58e26
-}
-
-.container .changes div {
-    background-color: var(--maincolor);
-    color: #FFF;
-    height:150px;
-    padding: 65px
-}
+.container form {
+    width: 500px;
+    margin: 20px auto;
+  }
+  .container form .errors-list .error {
+    padding: 15px;
+    background-color: rgba(244, 67, 54, 0.14);
+    color: #f44336;
+    margin-bottom: 15px;
+  }
+  .container form .form-group {
+    margin-bottom: 20px;
+  }
+  .container form label {
+    display: block;
+    margin-bottom: 15px;
+  }
+  .container form .form-input {
+    padding: 10px 15px;
+    background-color: #efefef;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+  .container form textarea {
+    height: 120px;
+    resize: none;
+  }
+  .container form .send-button {
+    display: block;
+    background-color: #2196f3;
+    color: #fff;
+    border-color: transparent;
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 24px;
+  }
+  
+  .links-urls {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+  }
+  .links-urls .link {
+    padding: 10px 20px;
+    display: block;
+    background-color: #EEE;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #777;
+  }
