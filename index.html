@@ -12,17 +12,12 @@
 
     <div class="container" id="elzero">
         <form>
-            <input type="text" placeholder="Type Your Task" v-model="taskText"/>
-            <button @click.prevent="addTask" :disabled="!taskText">Add Task</button>
-            <button class="delete-all" v-if="tasks.length > 1" @click.prevent="deleteAll">Delete All</button>
-          </form>
-          <div class="tasks-list" v-for="(task, index) in tasks">
-            <div class="task-box" @click="task.done = !task.done" :style="{ 'text-decoration': task.done ? 'line-through' : '' }"
-            >
-            {{ task.words }} </div>
-            <div class="delete" @click="deleteTask(index)">Delete</div>
-          </div>
-      </div>
+          <input type="text" placeholder="Type Your Name" v-model="name"/>
+          <input type="text" placeholder="Type Your Email" v-model="email"/>
+          <input type="text" placeholder="Type Your Phone" v-model="phone"/>
+          <button :disabled="!name || !email || !phone">Send Data</button>
+        </form>
+    </div>
    
 
     <script src="js/vue.js"></script>
@@ -31,21 +26,10 @@
         var vm = new Vue({
                el:'#elzero',
                data: {
-                 tasks: [],
-                 taskText: ""
-               }, 
-               methods: {
-                 addTask: function () { 
-                     this.tasks.push({ words: this.taskText, done: false });
-                     this.taskText ='';
-                 },
-                 deleteTask: function (index) {
-                     this.tasks.splice(index, 1);
-                 },
-                 deleteAll: function() {
-                     this.tasks = [];
-                 }
-               }  
+                name: null,
+                email: null,
+                phone: null
+               },  
         });
     </script>
 </body>
