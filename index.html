@@ -11,28 +11,19 @@
 <body>
 
     <div class="container" id="elzero">
-        <form action="send.html" method="post" @submit="validateForm">
-          <div class="errors-list">
-            <div class="error" v-for="error in formErrors">{{ error }}</div>
+        <form>
+            <input type="text" placeholder="Type Your Task" v-model="taskText"/>
+            <button @click.prevent="addTask" :disabled="!taskText">Add Task</button>
+            <button class="delete-all" v-if="tasks.length > 1" @click.prevent="deleteAll">Delete All</button>
+          </form>
+          <div class="tasks-list" v-for="(task, index) in tasks">
+            <div class="task-box" @click="task.done = !task.done" :style="{ 'text-decoration': task.done ? 'line-through' : '' }"
+            >
+            {{ task.words }} </div>
+            <div class="delete" @click="deleteTask(index)">Delete</div>
           </div>
-          <div class="form-group">
-            <label for="">Username</label>
-            <input class="form-input" type="text" name="username" v-model="username"/>
-          </div>
-          <div class="form-group">
-            <label for="">Subject</label>
-            <input class="form-input" type="text" name="subject" v-model="subject"/>
-          </div>
-          <div class="form-group">
-            <label for="">Message</label>
-            <textarea class="form-input" name="message" v-model="message"></textarea>
-          </div>
-          <div class="form-group">
-            <input class="send-button" type="submit" value="Send"/>
-          </div>
-        </form>
       </div>
-      <!-- Code End -->   
+   
 
     <script src="js/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
@@ -40,42 +31,20 @@
         var vm = new Vue({
                el:'#elzero',
                data: {
-                  formErrors: [],
-                  username: null,
-                  subject: null,
-                  message: null,
-                  maxChars: 10
+                 tasks: [],
+                 taskText: ""
                }, 
                methods: {
-                   validateForm: function (e){
-                    
-                    this.formErrors =[]; // Empty Errors To start Fresh
-
-                     // [1] check if username is empty
-                     if (!this.username) {
-                         this.formErrors.push('username cant be empty');
-                     }
-
-                     // [2] check if subject is empty
-                     if (!this.subject) {
-                         this.formErrors.push('subject cant be empty');
-                     }
-                      // [3] check if message is empty
-                      if (!this.message) {
-                         this.formErrors.push('Message cant be empty');
-                     }
-
-                     //[4] check username characters count 
-                     if (this.username && this.username.length > this.maxChars){
-                        this.formErrors.push('Username  cant be more than '+ this.maxChars + 'characters');
-                     }
-
-                     // If No Errors return true 
-                     if (!this.formErrors.length) { //this mean the forerrors is Empty
-                           return true;
-                     }
-                    e.preventDefault();
-                   }
+                 addTask: function () { 
+                     this.tasks.push({ words: this.taskText, done: false });
+                     this.taskText ='';
+                 },
+                 deleteTask: function (index) {
+                     this.tasks.splice(index, 1);
+                 },
+                 deleteAll: function() {
+                     this.tasks = [];
+                 }
                }  
         });
     </script>
