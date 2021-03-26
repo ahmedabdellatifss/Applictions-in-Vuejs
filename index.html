@@ -11,26 +11,11 @@
 <body>
 
     <div class="container" id="elzero">
-        <form>
-          <div class="grad-box" :style="{ backgroundImage: 'linear-gradient('+ direction +' , '+ colorOne +' , '+ colorTwo +')' }">Gradient Preview</div>
-          <form>
-            <div class="form-group">
-              <label>Direction</label>
-              <input type="text" v-model="direction"/>
-            </div><span class="separator">|</span>
-            <div class="form-group">
-              <label>Color Stop One</label>
-              <input type="text" v-model="colorOne"/>
-            </div><span class="separator">|</span>
-            <div class="form-group">
-              <label>Color Stop Two</label>
-              <input type="text" v-model="colorTwo"/>
-            </div>
-          </form>
-          <div class="result"><span>Css Code:</span>background-image: linear-gradient({{ direction }}, {{ colorOne }}, {{ colorTwo }});</div>
-          <div class="syntax"><span>Syntax:</span>background-image: linear-gradient(direction, color-stop1, color-stop2, ...);</div>
-        </div>
-        <!-- End Start -->>
+                    <!-- selected: isSelected this mean if the value of isSelected is true he put the class selector on the button else delete the class from the button -->
+      <button :class="{ selected: isSelected }" @click="isSelected = !isSelected">First Method</button>
+      <button @click="toggle">Second Method</button>
+      <button @click="toggleAdvanced($event, 'selected')">Third Method</button>
+    </div>
     </div>
    
 
@@ -40,10 +25,16 @@
         var vm = new Vue({
                el:'#elzero',
                data: {
-                 direction: 'to right',
-                 colorOne: "#FF0000",
-                 colorTwo: '#FFFF00'
-               },  
+                 isSelected: false,
+               }, 
+               methods: {
+                 toggle: function(event) {
+                   event.target.classList.toggle('selected');
+                 },
+                 toggleAdvanced : function(event, theClass){
+                  event.target.classList.toggle(theClass)
+                 },
+               }
         });
     </script>
 </body>
