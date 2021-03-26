@@ -9,28 +9,45 @@ body{
     text-align: center;
     padding: 20px
 }
+.container .grad-box {
+  padding: 40px;
+  border-bottom: 1px solid #ccc;
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+}
 .container form {
   margin: 20px auto;
-  width: 400px;
+  width: 900px;
 }
-.container form input {
-  width: 100%;
-  margin-bottom: 15px;
-  height: 46px;
-  padding: 10px;
+.container form .form-group {
+  display: inline-block;
 }
-.container form button {
-  width: 100%;
+.container form .form-group label {
   display: block;
-  padding: 15px 10px;
-  background-color: #2196f3;
-  color: #fff;
-  border-color: transparent;
-  cursor: pointer;
+  margin-bottom: 15px;
 }
-.container form button:disabled {
-  opacity: 0.4;
-  cursor: no-drop;
+.container form .form-group input {
+  padding: 10px 15px;
+  background-color: #efefef;
+  border: 1px solid #ccc;
+}
+.container form .separator {
+  margin: 0 20px;
+}
+.container .result,
+.container .syntax {
+  margin: 20px auto;
+  background-color: rgba(3, 169, 244, 0.35);
+  padding: 20px;
+  width: 865px;
+  text-align: left;
+}
+.container .result span,
+.container .syntax span {
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
 }
 
 .links-urls {

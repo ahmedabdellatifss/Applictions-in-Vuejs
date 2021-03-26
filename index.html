@@ -12,11 +12,25 @@
 
     <div class="container" id="elzero">
         <form>
-          <input type="text" placeholder="Type Your Name" v-model="name"/>
-          <input type="text" placeholder="Type Your Email" v-model="email"/>
-          <input type="text" placeholder="Type Your Phone" v-model="phone"/>
-          <button :disabled="!name || !email || !phone">Send Data</button>
-        </form>
+          <div class="grad-box" :style="{ backgroundImage: 'linear-gradient('+ direction +' , '+ colorOne +' , '+ colorTwo +')' }">Gradient Preview</div>
+          <form>
+            <div class="form-group">
+              <label>Direction</label>
+              <input type="text" v-model="direction"/>
+            </div><span class="separator">|</span>
+            <div class="form-group">
+              <label>Color Stop One</label>
+              <input type="text" v-model="colorOne"/>
+            </div><span class="separator">|</span>
+            <div class="form-group">
+              <label>Color Stop Two</label>
+              <input type="text" v-model="colorTwo"/>
+            </div>
+          </form>
+          <div class="result"><span>Css Code:</span>background-image: linear-gradient({{ direction }}, {{ colorOne }}, {{ colorTwo }});</div>
+          <div class="syntax"><span>Syntax:</span>background-image: linear-gradient(direction, color-stop1, color-stop2, ...);</div>
+        </div>
+        <!-- End Start -->>
     </div>
    
 
@@ -26,9 +40,9 @@
         var vm = new Vue({
                el:'#elzero',
                data: {
-                name: null,
-                email: null,
-                phone: null
+                 direction: 'to right',
+                 colorOne: "#FF0000",
+                 colorTwo: '#FFFF00'
                },  
         });
     </script>
