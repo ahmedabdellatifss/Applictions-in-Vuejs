@@ -11,30 +11,34 @@
 <body>
 
     <div class="container" id="elzero">
-      <ul class="tabs-choose">
-        <li @click="activeTab = '1'" :class="[activeTab === '1' ? 'active' : '']">Tab One</li>
-        <li @click="activeTab = '2'" :class="[activeTab === '2' ? 'active' : '']">Tab One</li>
-        <li @click="activeTab = '3'" :class="[activeTab === '3' ? 'active' : '']">Tab One</li>
-        <li @click="activeTab = '4'" :class="[activeTab === '4' ? 'active' : '']">Tab One</li>
-      </ul>
-      <div class="tabs-content">
-        <div class="content-one" v-if="activeTab === '1'">Content One</div>
-        <div class="content-two" v-if="activeTab === '2'">Content Two</div>
-        <div class="content-three" v-if="activeTab === '3'">Content Three</div>
-        <div class="content-four" v-if="activeTab === '4'">Content Four</div>
-      </div>
+      <img v-if="selected" :src="selected" alt=""/></div>
     </div>
    
 
     <script src="js/vue.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script>
+      var photos = [
+          "http://placehold.it/400/F00/FFF", // Index 0
+          "http://placehold.it/400/00F/FFF", // Index 1
+          "http://placehold.it/400/080/FFF",
+          "http://placehold.it/400/000/FFF",
+          "http://placehold.it/400/AAA/FFF"
+        ];
         var vm = new Vue({
                el:'#elzero',
                data: {
-                 activeTab: "1"
-               }
-        });
+                photos: photos,
+                selected: null
+              },
+              methods: {
+                randomPhoto(imgs) {
+                  return imgs[Math.floor(Math.random() * imgs.length)];
+                }
+              },
+              created() {
+                this.selected = this.randomPhoto(this.photos);
+              }
+            });
     </script>
 </body>
 </html>
