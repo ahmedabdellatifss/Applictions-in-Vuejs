@@ -11,11 +11,18 @@
 <body>
 
     <div class="container" id="elzero">
-                    <!-- selected: isSelected this mean if the value of isSelected is true he put the class selector on the button else delete the class from the button -->
-      <button :class="{ selected: isSelected }" @click="isSelected = !isSelected">First Method</button>
-      <button @click="toggle">Second Method</button>
-      <button @click="toggleAdvanced($event, 'selected')">Third Method</button>
-    </div>
+      <ul class="tabs-choose">
+        <li @click="activeTab = '1'" :class="[activeTab === '1' ? 'active' : '']">Tab One</li>
+        <li @click="activeTab = '2'" :class="[activeTab === '2' ? 'active' : '']">Tab One</li>
+        <li @click="activeTab = '3'" :class="[activeTab === '3' ? 'active' : '']">Tab One</li>
+        <li @click="activeTab = '4'" :class="[activeTab === '4' ? 'active' : '']">Tab One</li>
+      </ul>
+      <div class="tabs-content">
+        <div class="content-one" v-if="activeTab === '1'">Content One</div>
+        <div class="content-two" v-if="activeTab === '2'">Content Two</div>
+        <div class="content-three" v-if="activeTab === '3'">Content Three</div>
+        <div class="content-four" v-if="activeTab === '4'">Content Four</div>
+      </div>
     </div>
    
 
@@ -25,15 +32,7 @@
         var vm = new Vue({
                el:'#elzero',
                data: {
-                 isSelected: false,
-               }, 
-               methods: {
-                 toggle: function(event) {
-                   event.target.classList.toggle('selected');
-                 },
-                 toggleAdvanced : function(event, theClass){
-                  event.target.classList.toggle(theClass)
-                 },
+                 activeTab: "1"
                }
         });
     </script>
