@@ -11,33 +11,21 @@
 <body>
 
     <div class="container" id="elzero">
-      <img v-if="selected" :src="selected" alt=""/></div>
+      <button @click="message = !message">{{message ? 'Hide Message':'show Message'}}</button>
+      <transition name='fade'>
+        <div class="the-message" v-if="message">This is an alert</div>
+      </transition>
     </div>
    
 
     <script src="js/vue.js"></script>
     <script>
-      var photos = [
-          "http://placehold.it/400/F00/FFF", // Index 0
-          "http://placehold.it/400/00F/FFF", // Index 1
-          "http://placehold.it/400/080/FFF",
-          "http://placehold.it/400/000/FFF",
-          "http://placehold.it/400/AAA/FFF"
-        ];
         var vm = new Vue({
                el:'#elzero',
                data: {
-                photos: photos,
-                selected: null
+                message: false
               },
-              methods: {
-                randomPhoto(imgs) {
-                  return imgs[Math.floor(Math.random() * imgs.length)];
-                }
-              },
-              created() {
-                this.selected = this.randomPhoto(this.photos);
-              }
+              
             });
     </script>
 </body>

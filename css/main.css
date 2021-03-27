@@ -5,21 +5,23 @@ body{
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
 }
-.container{
-    text-align: center;
-    padding: 20px
+.container {
+  margin: 20px auto;
+  width: 1200px;
+  text-align: center;
 }
-.links-urls {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 10px;
+.container .the-message {
+  padding: 20px;
+  background-color: #eee;
+  max-width: 400px;
+  margin: 20px auto;
 }
-.links-urls .link {
-  padding: 10px 20px;
-  display: block;
-  background-color: #EEE;
-  margin-bottom: 10px;
-  text-decoration: none;
-  color: #777;
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+   opacity:0;
 }
