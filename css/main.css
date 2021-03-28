@@ -7,21 +7,38 @@ body{
 }
 .container {
   margin: 20px auto;
-  width: 1200px;
-  text-align: center;
+  width: 600px;
 }
-.container .the-message {
-  padding: 20px;
-  background-color: #eee;
-  max-width: 400px;
-  margin: 20px auto;
+.container .question-box:not(:last-child) {
+  border-bottom: 1px solid #EEE;
+}
+.container .question-box h3 {
+  margin: 0;
+  padding: 15px;
+  background-color: #DFDFDF;
+}
+.container .question-box h3:hover {
+  cursor: pointer;
+}
+.container .question-box .question-reply {
+  background-color: #EFEFEF;
+  padding: 15px;
+}
+.container .question-box .question-reply p {
+  margin: 0;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity .5s;
+.links-urls {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
 }
-
-.fade-enter, .fade-leave-to {
-   opacity:0;
-}
+.links-urls .link {
+  padding: 10px 20px;
+  display: block;
+  background-color: #EEE;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #777;
+}      

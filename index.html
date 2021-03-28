@@ -11,19 +11,49 @@
 <body>
 
     <div class="container" id="elzero">
-      <button @click="message = !message">{{message ? 'Hide Message':'show Message'}}</button>
-      <transition name='fade'>
-        <div class="the-message" v-if="message">This is an alert</div>
-      </transition>
+      <div class="question-box" v-for="question in questions">
+        <h3 @click="question.open = !question.open" v-text="question.title"></h3>
+        <div class="question-reply" v-show="question.open">
+          <p v-text="question.reply"></p>
+        </div>
+      </div>
     </div>
    
 
     <script src="js/vue.js"></script>
     <script>
+      var questions = {
+  "Question One": {
+    "open": false,
+    "title": "One: What Happen When Bla Bla Bla?",
+    "reply": "You Can Do What You Want Bla Bla Bla."
+  },
+  "Question Two": {
+    "open": false,
+    "title": "Two: What Happen When Bla Bla Bla?",
+    "reply": "You Can Do What You Want Bla Bla Bla."
+  },
+  "Question Three": {
+    "open": false,
+    "title": "Three: What Happen When Bla Bla Bla?",
+    "reply": "You Can Do What You Want Bla Bla Bla."
+  },
+  "Question Four": {
+    "open": false,
+    "title": "Four: What Happen When Bla Bla Bla?",
+    "reply": "You Can Do What You Want Bla Bla Bla."
+  },
+  "Question Five": {
+    "open": false,
+    "title": "Five: What Happen When Bla Bla Bla?",
+    "reply": "You Can Do What You Want Bla Bla Bla."
+  },
+}
+
         var vm = new Vue({
                el:'#elzero',
                data: {
-                message: false
+                questions: questions
               },
               
             });
