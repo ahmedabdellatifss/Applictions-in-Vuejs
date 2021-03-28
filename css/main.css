@@ -8,37 +8,21 @@ body{
 .container {
   margin: 20px auto;
   width: 600px;
+  text-align: center;
+}   
+.container textarea {
+  width: 400px;
+  height: 200px;
+  resize: none;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  
 }
-.container .question-box:not(:last-child) {
-  border-bottom: 1px solid #EEE;
-}
-.container .question-box h3 {
-  margin: 0;
-  padding: 15px;
-  background-color: #DFDFDF;
-}
-.container .question-box h3:hover {
-  cursor: pointer;
-}
-.container .question-box .question-reply {
-  background-color: #EFEFEF;
-  padding: 15px;
-}
-.container .question-box .question-reply p {
-  margin: 0;
-}
-
-.links-urls {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 10px;
-}
-.links-urls .link {
-  padding: 10px 20px;
+.container .counter {
   display: block;
-  background-color: #EEE;
-  margin-bottom: 10px;
-  text-decoration: none;
-  color: #777;
-}      
+  text-align: right;
+  padding-top: 10px;
+}
+.container .counter.zero span {
+  color: red;
+}

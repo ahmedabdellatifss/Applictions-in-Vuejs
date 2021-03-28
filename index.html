@@ -11,51 +11,30 @@
 <body>
 
     <div class="container" id="elzero">
-      <div class="question-box" v-for="question in questions">
-        <h3 @click="question.open = !question.open" v-text="question.title"></h3>
-        <div class="question-reply" v-show="question.open">
-          <p v-text="question.reply"></p>
-        </div>
-      </div>
+      <h4>Write Your Message ( {{ maxLenght }} characters Allowed )</h4>
+      <textarea @input="countChars" v-model="message" :maxlength="maxLength"></textarea>
+      <span class="counter" :class="{ 'zero': reachZero }"> Left | <span> {{ remainingChars }} </span> </span>
+
     </div>
    
 
     <script src="js/vue.js"></script>
     <script>
-      var questions = {
-  "Question One": {
-    "open": false,
-    "title": "One: What Happen When Bla Bla Bla?",
-    "reply": "You Can Do What You Want Bla Bla Bla."
-  },
-  "Question Two": {
-    "open": false,
-    "title": "Two: What Happen When Bla Bla Bla?",
-    "reply": "You Can Do What You Want Bla Bla Bla."
-  },
-  "Question Three": {
-    "open": false,
-    "title": "Three: What Happen When Bla Bla Bla?",
-    "reply": "You Can Do What You Want Bla Bla Bla."
-  },
-  "Question Four": {
-    "open": false,
-    "title": "Four: What Happen When Bla Bla Bla?",
-    "reply": "You Can Do What You Want Bla Bla Bla."
-  },
-  "Question Five": {
-    "open": false,
-    "title": "Five: What Happen When Bla Bla Bla?",
-    "reply": "You Can Do What You Want Bla Bla Bla."
-  },
-}
-
         var vm = new Vue({
                el:'#elzero',
                data: {
-                questions: questions
+                maxLength: 10,
+                remainingChars: 10,
+                message: null,
+                reachZero: false,
               },
-              
+              methods: {
+                countChars: function () {
+                    this.remainingChars = this.maxLength - this.message.length;
+                    // the reachZero will be equal True when the remainingChars equal (0)
+                    this.reachZero = this.remainingChars === 0;                    
+                },
+              }
             });
     </script>
 </body>
